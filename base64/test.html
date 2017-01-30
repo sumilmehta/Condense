@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Condense - Base64 Testing</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="condense, compression, deflate, inflate" />
+    <meta name="author" content="in-house">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+    <!-- Favicone Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+    <link rel="icon" type="image/png" href="../img/favicon.png" />
+    <link rel="apple-touch-icon" href="../img/favicon.png" />
+
+    <!-- Css -->
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../css/plugins/animate.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="wow-animate">
+
+<!-- Page Wraper -->		
+		<div class="container text-center">
+		    <br><br><br>
+			<h3>Test for base64 Encryption Technique</h3>
+			<br>
+			<dl>
+				<dt>Text</dt>
+					<dd><textarea id="srctxt" cols="32" rows="4" onkeyup="doit()"></textarea></dd>
+				<br>
+				<dt>Base64 ( URL Safe <input id="encodeURI" type="checkbox" onclick="doit()"> )</dt>
+					<dd>
+						<th><textarea id="base64" cols=32" rows="4" onkeyup="
+						$('srctxt').value = Base64.decode(this.value);
+						doit();
+						if (1 /*@cc_on -1 @*/) $('data').src = 'data:text/plain;base64,' + this.value;"></textarea></dd>
+			</dl>
+			
+        <div class="portfolio-item-content-spc">
+            <a href="../string.html" class="btn btn-black-outline btn-lg">Go Back</a>
+        </div>
+
+		</div>	
+			
+	</div>
+    <!-- End Page Wraper -->
+	
+	
+	<!-- JS Script -->
+
+	
+	<script src="./base64.js"></script>
+    <script>
+$ = function(id){ return document.getElementById(id) };
+function doit(){
+    var encoded = Base64[ 
+        'encode' + ($('encodeURI').checked ? 'URI' : '')
+     ]($('srctxt').value);
+    $('base64').value = encoded;
+    if (1 /*@cc_on -1 @*/) {
+        $('data').src = 'data:text/plain;base64,' 
+            + Base64.encode(Base64.decode(encoded));
+    }
+    $('roundtrip').value = Base64.decode(encoded);
+}
+</script>
+	
+   
+</body>
+</html>
